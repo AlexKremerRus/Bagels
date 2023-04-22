@@ -17,18 +17,11 @@ def getsecret_num():
     """ Возвращает строку из NUM_DIGITS уникальных случайных цифр."""
     numbers = list('0123456789')  # создается список цифр от 0 до 9
     random.shuffle(numbers)  # перетасовываем их
-    # Берем первые NUM_DIGITS цифр списка для нашего секретного числа:
-    # secret_num = ''
+    """Берем первые NUM_DIGITS цифр списка для нашего секретного числа:"""
     num_digits, max_guesses = constants()
     str(numbers)
-    # print(numbers)
-    # print(type(numbers))
     numbers_str=''.join(numbers)
-    # print(numbers_str)
     secret_num = numbers_str[0:num_digits]
-
-    # for i in range(num_digits):
-    #     secret_num += str(numbers[i])
     return secret_num
 
 
@@ -44,29 +37,27 @@ def getClues(guess, secret_num):
     for i in range(len(guess)):
         if guess[i] == secret_num[i]:
         # Правильная цифра на правильном месте.
-            #print(" ЕСТЬ Правильная цифра на правильном месте.")
+
             clues.append('Fermi, в вашей догадке есть правильная цифра на правильном месте;')
         elif guess[i] in secret_num:
             # Правильная цифра на НЕправильном месте.
-            #print(" ЕСТЬ Правильная цифра на НЕправильном месте.")
+
             clues.append('Pico, вы угадали правильную цифру на неправильном месте;')
         else:
             clues.append('Bagels, одного из чисел, точно НЕТ в загаданном числе;')
     if len(clues) == 0:
         return 'Bagels, правильных цифр НЕТ'  # правильных цифр НЕТ
     else:
-        # Сортируем подсказки в алфавитном порядке, чтобы их исходный
-        # порядок ничего не выдавал.
-
+        # Сортируем подсказки в алфавитном порядке, чтобы их исходный порядок ничего не выдавал.
         clues.sort()
-        # Склеиваем список подсказок в одно строковое значение.
 
+        # Склеиваем список подсказок в одно строковое значение.
         return ' '.join(clues)
 
 
 def print_hi():
     # Use a breakpoint in the code line below to debug your script.
-    print('Привет, тебя встречает игра Bagels')  # Press Ctrl+F8 to toggle the breakpoint.
+    print('Привет, тебя встречает игра Bagels')
     print('Дедуктивно-логическая игра, на угадывание числа по подсказкам')
 
 
@@ -113,14 +104,20 @@ def main():
     print('Спасибо что поиграли! Возвращайтесь еще!!!')
 
 
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-
     print_hi()
-    helps()
 
-    main()
+    print("Хотите прочитать инструкцию? (y/n)")
+    if input('> ').lower().startswith('y'):
+        helps()
+
+    print("Хотите начать игру? (y/n)")
+    if input('> ').lower().startswith('y'):
+        main()
+    else:
+        print('''Надеемся вы скоро вернетесь =) ''')
+
+
 
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
